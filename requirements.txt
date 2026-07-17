@@ -1,0 +1,27 @@
+# ── Core Deep Learning ────────────────────────────────────────────────────
+torch>=2.2.0
+torchvision>=0.17.0
+
+# ── Computer Vision ───────────────────────────────────────────────────────
+opencv-python>=4.9.0
+
+# ── Numerical + Scientific ────────────────────────────────────────────────
+numpy>=1.26.0
+scikit-learn>=1.4.0
+
+# ── Visualisation ─────────────────────────────────────────────────────────
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# ── Image I/O ─────────────────────────────────────────────────────────────
+Pillow>=10.2.0
+
+# ── RL Framework (optional — env is custom but gymnasium API compliant) ───
+gymnasium>=0.29.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────
+tqdm>=4.66.0
+
+# ── Web Application / UI ──────────────────────────────────────────────────
+streamlit>=1.30.0
+
