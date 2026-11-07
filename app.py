@@ -374,7 +374,7 @@ def main():
 
         if uploaded:
             pil_img = Image.open(uploaded).convert("RGB")
-            st.image(pil_img, caption="Uploaded MRI", width="stretch")
+            st.image(pil_img, caption="Uploaded MRI", use_container_width=True)
 
         html("""
         <div style="margin-top:1.4rem;">
@@ -459,7 +459,7 @@ def main():
             img_bytes = fig_to_bytes(fig)
             plt.close(fig)
 
-            st.image(img_bytes, width="stretch")
+            st.image(img_bytes, use_container_width=True)
 
             # Bounding box info panel
             x1, y1, x2, y2 = bbox_px
@@ -497,7 +497,7 @@ def main():
                     data=img_bytes,
                     file_name=f"gradcam_{pred_class.lower()}.png",
                     mime="image/png",
-                    width="stretch",
+                    use_container_width=True,
                 )
             with dl2:
                 report = (
@@ -515,7 +515,7 @@ def main():
                     data=report,
                     file_name="neuroscan_report.txt",
                     mime="text/plain",
-                    width="stretch",
+                    use_container_width=True,
                 )
 
     # Footer
