@@ -32,7 +32,8 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+BASE_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BASE_DIR))
 
 from models.resnet50_model import build_cnn, NUM_CLASSES
 from models.dqn_agent import DQNAgent
@@ -45,8 +46,9 @@ WARMUP_STEPS  = 200         # random actions before learning starts
 LOG_EVERY     = 20          # print every N episodes
 SAVE_EVERY    = 100         # save checkpoint every N episodes
 
-RESULTS_DIR = Path("results")
+RESULTS_DIR = BASE_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
+DATASET_DIR = BASE_DIR / "dataset"
 
 BEST_DQN_PATH    = RESULTS_DIR / "best_dqn.pth"
 RL_METRICS_PATH  = RESULTS_DIR / "rl_training_metrics.json"
@@ -134,7 +136,7 @@ def main():
 
     cnn     = load_cnn(device)
     agent   = DQNAgent(device=device)
-    samples = sample_training_images(n=NUM_EPISODES)
+    samples = sample_training_images(dataset_root=str(DATASET_DIR), n=NUM_EPISODES)
 
     history = {
         "episode_rewards": [],

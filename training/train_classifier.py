@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 
 # ── Project imports ───────────────────────────────────────────────────────────
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+BASE_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BASE_DIR))
 
 from models.resnet50_model import build_cnn
 from utils.preprocessing import load_datasets
@@ -23,8 +24,9 @@ STAGE1_LR     = 1e-3
 STAGE2_LR     = 1e-4
 WEIGHT_DECAY  = 1e-4
 
-RESULTS_DIR = Path("results")
+RESULTS_DIR = BASE_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
+DATASET_DIR = BASE_DIR / "dataset"
 
 BEST_MODEL_PATH = RESULTS_DIR / "best_cnn.pth"
 METRICS_PATH    = RESULTS_DIR / "cnn_training_metrics.json"
@@ -159,7 +161,7 @@ def main():
     print(f"[Train] Using device: {device}")
 
     # ── Data ─────────────────────────────────────────────────────────────────
-    train_loader, val_loader, test_loader, class_names = load_datasets()
+    train_loader, val_loader, test_loader, class_names = load_datasets(dataset_root=str(DATASET_DIR))
 
     # ── Model ────────────────────────────────────────────────────────────────
     model = build_cnn(

@@ -55,7 +55,8 @@ CLASS_DESC = {
 IMG_SIZE      = 224
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD  = [0.229, 0.224, 0.225]
-MODEL_PATH    = Path("results/best_cnn.pth")
+BASE_DIR      = Path(__file__).resolve().parent
+MODEL_PATH    = BASE_DIR / "results" / "best_cnn.pth"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # CSS

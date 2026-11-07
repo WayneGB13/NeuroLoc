@@ -36,8 +36,10 @@ from utils.preprocessing import (
     CLASS_NAMES,
 )
 
-RESULTS_DIR = Path("results")
+BASE_DIR    = Path(__file__).resolve().parent
+RESULTS_DIR = BASE_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
+DATASET_DIR = BASE_DIR / "dataset"
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -78,7 +80,7 @@ def mode_evaluate():
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # ── CNN evaluation ────────────────────────────────────────────────────────
-    _, _, test_loader, class_names = load_datasets()
+    _, _, test_loader, class_names = load_datasets(dataset_root=str(DATASET_DIR))
     cnn = load_pretrained_cnn(device)
     run_full_evaluation(cnn, test_loader, class_names, device)
 
@@ -94,7 +96,7 @@ def mode_evaluate():
 
     from torchvision import datasets
     test_ds = datasets.ImageFolder(
-        root="dataset/Testing",
+        root=str(DATASET_DIR / "Testing"),
         transform=get_eval_transforms(),
     )
 

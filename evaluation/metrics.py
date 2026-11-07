@@ -28,9 +28,10 @@ from sklearn.metrics import (
 )
 
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+BASE_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(BASE_DIR))
 
-RESULTS_DIR = Path("results")
+RESULTS_DIR = BASE_DIR / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
 
 
